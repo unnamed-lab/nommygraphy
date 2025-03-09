@@ -89,10 +89,10 @@ export function AboutSection() {
           <div ref={imageRef} className="relative">
             <div className="aspect-square overflow-hidden rounded-xl bg-gray-300">
               <Image
-                src="/placeholder.svg"
+                src="/asset/0004.jpg"
                 alt="About Nommygraphy"
                 fill
-                className="object-cover"
+                className="object-cover object-top"
               />
             </div>
             <div className="absolute -bottom-6 -left-6 bg-background p-4 sm:p-6 rounded-xl shadow-lg">
