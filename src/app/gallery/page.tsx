@@ -1,7 +1,8 @@
-import { GalleryGrid } from "@/components/gallery-grid"
-import { GalleryFilter } from "@/components/gallery-filter"
-import { AdUnit } from "@/components/ad-unit"
-import { NewsletterAd } from "@/components/newsletter-ad"
+import { GalleryGrid } from "@/components/gallery-grid";
+import { GalleryFilter } from "@/components/gallery-filter";
+import { AdUnit } from "@/components/ad-unit";
+import { NewsletterAd } from "@/components/newsletter-ad";
+import { Suspense } from "react";
 
 export default function GalleryPage() {
   return (
@@ -12,7 +13,8 @@ export default function GalleryPage() {
             Our <span className="font-medium">Gallery</span>
           </h1>
           <p className="text-muted-foreground text-lg md:text-xl">
-            Explore our collection of captivating moments, each telling a unique story through the lens.
+            Explore our collection of captivating moments, each telling a unique
+            story through the lens.
           </p>
         </div>
 
@@ -21,10 +23,14 @@ export default function GalleryPage() {
           <AdUnit slot="1234567890" format="horizontal" />
         </div>
 
-        <GalleryFilter />
+        <Suspense>
+          <GalleryFilter />
+        </Suspense>
 
         <div className="mt-8">
-          <GalleryGrid />
+          <Suspense>
+            <GalleryGrid />
+          </Suspense>
         </div>
 
         {/* Mid-content newsletter ad */}
@@ -36,6 +42,5 @@ export default function GalleryPage() {
         </div>
       </section>
     </main>
-  )
+  );
 }
-
