@@ -35,7 +35,7 @@ export default function Home() {
           </div>
           <div className="relative aspect-square overflow-hidden rounded-xl bg-gray-300">
             <Image
-              src="/placeholder.svg"
+              src="/asset/0002.jpg"
               alt="Elegant photography"
               fill
               className="object-cover"

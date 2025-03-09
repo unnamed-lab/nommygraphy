@@ -52,11 +52,11 @@ export function HeroSection() {
     <section ref={sectionRef} className="relative min-h-screen flex items-center pt-20 overflow-hidden">
       <div className="absolute inset-0 -z-10" ref={imageRef}>
         <Image
-          src="/placeholder.svg?height=1080&width=1920"
+          src="/asset/0001.jpg"
           alt="Hero background"
           fill
           priority
-          className="object-cover opacity-90"
+          className="object-cover object-center opacity-90"
         />
         <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" />
       </div>
