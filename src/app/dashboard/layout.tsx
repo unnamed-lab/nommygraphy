@@ -1,6 +1,6 @@
 import type React from "react"
-import { DashboardNav } from "@/components/dashboard/dashboard-nav"
-import { UserAccountNav } from "@/components/dashboard/user-account-nav"
+import { DashboardNav } from "@/components/dashboard-nav"
+import { UserAccountNav } from "@/components/user-account-nav"
 
 export default function DashboardLayout({
   children,

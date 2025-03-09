@@ -15,7 +15,7 @@ import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, For
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { toast } from "@/components/ui/use-toast"
+import { toast } from "sonner"
 
 const formSchema = z.object({
   title: z.string().min(2, {
@@ -83,10 +83,9 @@ export function UploadForm() {
     // Simulate upload
     setTimeout(() => {
       setIsUploading(false)
-      toast({
-        title: "Upload successful",
+      toast("Upload successful", {
         description: "Your images have been uploaded to the gallery.",
-      })
+      });
 
       router.push("/dashboard/gallery")
     }, 2000)

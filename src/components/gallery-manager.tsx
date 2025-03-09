@@ -40,53 +40,8 @@ import {
 } from "@/components/ui/dialog";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { toast } from "@/components/ui/use-toast";
-
-// Sample gallery data
-const galleryItems = [
-  {
-    id: 1,
-    title: "Mountain Sunrise",
-    category: "landscape",
-    image: "/placeholder.svg",
-    date: "2023-10-15",
-  },
-  {
-    id: 2,
-    title: "Urban Portrait",
-    category: "portrait",
-    image: "/placeholder.svg",
-    date: "2023-09-22",
-  },
-  {
-    id: 3,
-    title: "Wedding Ceremony",
-    category: "wedding",
-    image: "/placeholder.svg",
-    date: "2023-11-05",
-  },
-  {
-    id: 4,
-    title: "City Skyline",
-    category: "urban",
-    image: "/placeholder.svg",
-    date: "2023-08-30",
-  },
-  {
-    id: 5,
-    title: "Product Showcase",
-    category: "commercial",
-    image: "/placeholder.svg",
-    date: "2023-10-10",
-  },
-  {
-    id: 6,
-    title: "Light Patterns",
-    category: "abstract",
-    image: "/placeholder.svg",
-    date: "2023-07-15",
-  },
-];
+import { toast } from "sonner";
+import { galleryItems } from "@/static-data/gallery";
 
 export function GalleryManager() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -116,8 +71,7 @@ export function GalleryManager() {
 
   const confirmDelete = () => {
     // In a real app, you would delete the item from your database
-    toast({
-      title: "Image deleted",
+    toast("Image deleted", {
       description: "The image has been removed from your gallery.",
     });
     setIsDeleteDialogOpen(false);
@@ -125,8 +79,7 @@ export function GalleryManager() {
 
   const saveChanges = () => {
     // In a real app, you would save the changes to your database
-    toast({
-      title: "Changes saved",
+    toast("Changes saved", {
       description: "Your image details have been updated.",
     });
     setIsEditDialogOpen(false);
@@ -254,10 +207,10 @@ export function GalleryManager() {
                   <span className="text-xs text-muted-foreground capitalize">
                     {item.category}
                   </span>
-                  <span className="text-xs text-muted-foreground">•</span>
+                  {/* <span className="text-xs text-muted-foreground">•</span>
                   <span className="text-xs text-muted-foreground">
                     {item.date}
-                  </span>
+                  </span> */}
                 </div>
               </div>
             </div>

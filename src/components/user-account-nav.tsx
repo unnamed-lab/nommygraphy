@@ -1,8 +1,8 @@
-"use client"
+"use client";
 
-import Link from "next/link"
-import { useRouter } from "next/navigation"
-import { User, Settings, LogOut, PlusCircle } from "lucide-react"
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { User, Settings, LogOut, PlusCircle } from "lucide-react";
 
 import {
   DropdownMenu,
@@ -12,23 +12,22 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
-import { Button } from "@/components/ui/button"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { toast } from "@/components/ui/use-toast"
+} from "@/components/ui/dropdown-menu";
+import { Button } from "@/components/ui/button";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { toast } from "sonner";
 
 export function UserAccountNav() {
-  const router = useRouter()
+  const router = useRouter();
 
   const handleSignOut = () => {
     // Simulate sign out
-    toast({
-      title: "Signed out",
+    toast("Signed out", {
       description: "You have been signed out of your account.",
-    })
+    });
 
-    router.push("/login")
-  }
+    router.push("/login");
+  };
 
   return (
     <DropdownMenu>
@@ -44,7 +43,9 @@ export function UserAccountNav() {
         <DropdownMenuLabel className="font-normal">
           <div className="flex flex-col space-y-1">
             <p className="text-sm font-medium leading-none">Admin</p>
-            <p className="text-xs leading-none text-muted-foreground">admin@nonygraphy.com</p>
+            <p className="text-xs leading-none text-muted-foreground">
+              admin@nonygraphy.com
+            </p>
           </div>
         </DropdownMenuLabel>
         <DropdownMenuSeparator />
@@ -75,6 +76,5 @@ export function UserAccountNav() {
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
-  )
+  );
 }
-
