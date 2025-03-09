@@ -23,7 +23,7 @@ import { galleryItems } from "@/static-data/gallery";
 
 export function GalleryPreview({gridCount = Infinity}: {gridCount?:number}) {
   const galleryRef = useRef<HTMLDivElement>(null);
-  const itemsRef = useRef<HTMLDivElement[]>([]);
+  const itemsRef = useRef<HTMLAnchorElement[]>([]);
   const [selectedImage, setSelectedImage] = useState<
     (typeof galleryItems)[0] | null
   >(null);
