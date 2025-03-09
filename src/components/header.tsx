@@ -120,17 +120,13 @@ export function Header() {
                     className="flex items-center gap-2 font-merriweather"
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
-                    <Camera className="h-5 w-5 text-primary" />
-                    <span className="text-lg font-bold">nommygraphy</span>
+                    <Image
+                      src={"/logo.png"}
+                      alt="Nommygraphy"
+                      width={200}
+                      height={24}
+                    />
                   </Link>
-                  <Button
-                    variant="ghost"
-                    size="icon"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                  >
-                    <X className="h-5 w-5" />
-                    <span className="sr-only">Close menu</span>
-                  </Button>
                 </div>
 
                 <nav className="flex flex-col gap-6 py-8">

@@ -1,12 +1,20 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import Image from "next/image"
-import Link from "next/link"
-import { Edit, Trash2, Eye, Plus, Search, MoreHorizontal, Download } from "lucide-react"
+import { useState } from "react";
+import Image from "next/image";
+import Link from "next/link";
+import {
+  Edit,
+  Trash2,
+  Eye,
+  Plus,
+  Search,
+  MoreHorizontal,
+  Download,
+} from "lucide-react";
 
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -14,8 +22,14 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+} from "@/components/ui/dropdown-menu";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import {
   Dialog,
   DialogContent,
@@ -23,10 +37,10 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from "@/components/ui/dialog"
-import { Label } from "@/components/ui/label"
-import { Textarea } from "@/components/ui/textarea"
-import { toast } from "@/components/ui/use-toast"
+} from "@/components/ui/dialog";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
+import { toast } from "@/components/ui/use-toast";
 
 // Sample gallery data
 const galleryItems = [
@@ -34,89 +48,89 @@ const galleryItems = [
     id: 1,
     title: "Mountain Sunrise",
     category: "landscape",
-    image: "/placeholder.svg?height=800&width=1200",
+    image: "/placeholder.svg",
     date: "2023-10-15",
   },
   {
     id: 2,
     title: "Urban Portrait",
     category: "portrait",
-    image: "/placeholder.svg?height=1200&width=800",
+    image: "/placeholder.svg",
     date: "2023-09-22",
   },
   {
     id: 3,
     title: "Wedding Ceremony",
     category: "wedding",
-    image: "/placeholder.svg?height=800&width=1200",
+    image: "/placeholder.svg",
     date: "2023-11-05",
   },
   {
     id: 4,
     title: "City Skyline",
     category: "urban",
-    image: "/placeholder.svg?height=800&width=1200",
+    image: "/placeholder.svg",
     date: "2023-08-30",
   },
   {
     id: 5,
     title: "Product Showcase",
     category: "commercial",
-    image: "/placeholder.svg?height=800&width=800",
+    image: "/placeholder.svg",
     date: "2023-10-10",
   },
   {
     id: 6,
     title: "Light Patterns",
     category: "abstract",
-    image: "/placeholder.svg?height=1200&width=800",
+    image: "/placeholder.svg",
     date: "2023-07-15",
   },
-]
+];
 
 export function GalleryManager() {
-  const [searchQuery, setSearchQuery] = useState("")
-  const [selectedCategory, setSelectedCategory] = useState("all")
-  const [editItem, setEditItem] = useState<any>(null)
-  const [isEditDialogOpen, setIsEditDialogOpen] = useState(false)
-  const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false)
-  const [itemToDelete, setItemToDelete] = useState<number | null>(null)
+  const [searchQuery, setSearchQuery] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("all");
+  const [editItem, setEditItem] = useState<any>(null);
+  const [isEditDialogOpen, setIsEditDialogOpen] = useState(false);
+  const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
+  const [itemToDelete, setItemToDelete] = useState<number | null>(null);
 
   const filteredItems = galleryItems.filter(
     (item) =>
       (selectedCategory === "all" || item.category === selectedCategory) &&
       (searchQuery === "" ||
         item.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        item.category.toLowerCase().includes(searchQuery.toLowerCase())),
-  )
+        item.category.toLowerCase().includes(searchQuery.toLowerCase()))
+  );
 
   const handleEdit = (item: any) => {
-    setEditItem(item)
-    setIsEditDialogOpen(true)
-  }
+    setEditItem(item);
+    setIsEditDialogOpen(true);
+  };
 
   const handleDelete = (id: number) => {
-    setItemToDelete(id)
-    setIsDeleteDialogOpen(true)
-  }
+    setItemToDelete(id);
+    setIsDeleteDialogOpen(true);
+  };
 
   const confirmDelete = () => {
     // In a real app, you would delete the item from your database
     toast({
       title: "Image deleted",
       description: "The image has been removed from your gallery.",
-    })
-    setIsDeleteDialogOpen(false)
-  }
+    });
+    setIsDeleteDialogOpen(false);
+  };
 
   const saveChanges = () => {
     // In a real app, you would save the changes to your database
     toast({
       title: "Changes saved",
       description: "Your image details have been updated.",
-    })
-    setIsEditDialogOpen(false)
-  }
+    });
+    setIsEditDialogOpen(false);
+  };
 
   return (
     <div className="space-y-4">
@@ -172,8 +186,8 @@ export function GalleryManager() {
           </p>
           <Button
             onClick={() => {
-              setSearchQuery("")
-              setSelectedCategory("all")
+              setSearchQuery("");
+              setSelectedCategory("all");
             }}
           >
             Reset Filters
@@ -182,7 +196,10 @@ export function GalleryManager() {
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {filteredItems.map((item) => (
-            <div key={item.id} className="group relative overflow-hidden rounded-lg border bg-background">
+            <div
+              key={item.id}
+              className="group relative overflow-hidden rounded-lg border bg-background"
+            >
               <div className="aspect-square relative">
                 <Image
                   src={item.image || "/placeholder.svg"}
@@ -192,11 +209,19 @@ export function GalleryManager() {
                 />
                 <div className="absolute inset-0 bg-black/40 opacity-0 transition-opacity group-hover:opacity-100 flex items-center justify-center">
                   <div className="flex gap-2">
-                    <Button size="icon" variant="secondary" onClick={() => handleEdit(item)}>
+                    <Button
+                      size="icon"
+                      variant="secondary"
+                      onClick={() => handleEdit(item)}
+                    >
                       <Edit className="h-4 w-4" />
                       <span className="sr-only">Edit</span>
                     </Button>
-                    <Button size="icon" variant="secondary" onClick={() => handleDelete(item.id)}>
+                    <Button
+                      size="icon"
+                      variant="secondary"
+                      onClick={() => handleDelete(item.id)}
+                    >
                       <Trash2 className="h-4 w-4" />
                       <span className="sr-only">Delete</span>
                     </Button>
@@ -226,9 +251,13 @@ export function GalleryManager() {
               <div className="p-4">
                 <h3 className="font-medium">{item.title}</h3>
                 <div className="flex items-center gap-2 mt-1">
-                  <span className="text-xs text-muted-foreground capitalize">{item.category}</span>
+                  <span className="text-xs text-muted-foreground capitalize">
+                    {item.category}
+                  </span>
                   <span className="text-xs text-muted-foreground">•</span>
-                  <span className="text-xs text-muted-foreground">{item.date}</span>
+                  <span className="text-xs text-muted-foreground">
+                    {item.date}
+                  </span>
                 </div>
               </div>
             </div>
@@ -241,18 +270,29 @@ export function GalleryManager() {
         <DialogContent className="sm:max-w-[500px]">
           <DialogHeader>
             <DialogTitle>Edit Image</DialogTitle>
-            <DialogDescription>Make changes to your gallery image details.</DialogDescription>
+            <DialogDescription>
+              Make changes to your gallery image details.
+            </DialogDescription>
           </DialogHeader>
           {editItem && (
             <div className="grid gap-4 py-4">
               <div className="relative aspect-video overflow-hidden rounded-lg">
-                <Image src={editItem.image || "/placeholder.svg"} alt={editItem.title} fill className="object-cover" />
+                <Image
+                  src={editItem.image || "/placeholder.svg"}
+                  alt={editItem.title}
+                  fill
+                  className="object-cover"
+                />
               </div>
               <div className="grid grid-cols-4 items-center gap-4">
                 <Label htmlFor="title" className="text-right">
                   Title
                 </Label>
-                <Input id="title" defaultValue={editItem.title} className="col-span-3" />
+                <Input
+                  id="title"
+                  defaultValue={editItem.title}
+                  className="col-span-3"
+                />
               </div>
               <div className="grid grid-cols-4 items-center gap-4">
                 <Label htmlFor="category" className="text-right">
@@ -276,12 +316,19 @@ export function GalleryManager() {
                 <Label htmlFor="description" className="text-right">
                   Description
                 </Label>
-                <Textarea id="description" placeholder="Add a description..." className="col-span-3" />
+                <Textarea
+                  id="description"
+                  placeholder="Add a description..."
+                  className="col-span-3"
+                />
               </div>
             </div>
           )}
           <DialogFooter>
-            <Button variant="outline" onClick={() => setIsEditDialogOpen(false)}>
+            <Button
+              variant="outline"
+              onClick={() => setIsEditDialogOpen(false)}
+            >
               Cancel
             </Button>
             <Button onClick={saveChanges}>Save changes</Button>
@@ -295,11 +342,15 @@ export function GalleryManager() {
           <DialogHeader>
             <DialogTitle>Confirm Deletion</DialogTitle>
             <DialogDescription>
-              Are you sure you want to delete this image? This action cannot be undone.
+              Are you sure you want to delete this image? This action cannot be
+              undone.
             </DialogDescription>
           </DialogHeader>
           <DialogFooter>
-            <Button variant="outline" onClick={() => setIsDeleteDialogOpen(false)}>
+            <Button
+              variant="outline"
+              onClick={() => setIsDeleteDialogOpen(false)}
+            >
               Cancel
             </Button>
             <Button variant="destructive" onClick={confirmDelete}>
@@ -309,6 +360,5 @@ export function GalleryManager() {
         </DialogContent>
       </Dialog>
     </div>
-  )
+  );
 }
-

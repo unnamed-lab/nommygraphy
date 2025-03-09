@@ -68,8 +68,8 @@ export function AboutSection() {
               About <span className="font-bold">Nommygraphy</span>
             </h2>
             <p className="text-muted-foreground text-base sm:text-lg">
-              We are a passionate team of photographers dedicated to capturing
-              life's most precious moments with artistry and a touch of magic.
+              {`We are a passionate team of photographers dedicated to capturing
+              life's most precious moments with artistry and a touch of magic.`}
             </p>
             <p className="text-muted-foreground">
               Founded with a vision to transform ordinary scenes into
@@ -87,9 +87,9 @@ export function AboutSection() {
           </div>
 
           <div ref={imageRef} className="relative">
-            <div className="aspect-square overflow-hidden rounded-xl">
+            <div className="aspect-square overflow-hidden rounded-xl bg-gray-300">
               <Image
-                src="/placeholder.svg?height=600&width=600"
+                src="/placeholder.svg"
                 alt="About Nommygraphy"
                 fill
                 className="object-cover"

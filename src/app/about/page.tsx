@@ -20,7 +20,7 @@ export default function AboutPage() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center mb-20">
           <div className="relative aspect-[4/5] overflow-hidden rounded-xl">
             <Image
-              src="/placeholder.svg?height=800&width=640"
+              src="/placeholder.svg"
               alt="About Nommygraphy"
               fill
               className="object-cover"

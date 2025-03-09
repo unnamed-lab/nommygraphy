@@ -77,7 +77,7 @@ export function HeroSection() {
             <Button asChild size="lg" className="bg-primary hover:bg-primary/90">
               <Link href="/gallery">Explore Gallery</Link>
             </Button>
-            <Button asChild variant="outline" size="lg" className="text-primary border-white hover:bg-white/10">
+            <Button asChild variant="outline" size="lg" className="text-primary hover:text-white border-white hover:bg-white/10">
               <Link href="/contact" className="group">
                 Book a Session
                 <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />

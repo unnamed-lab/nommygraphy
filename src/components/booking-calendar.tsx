@@ -1,21 +1,38 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { zodResolver } from "@hookform/resolvers/zod"
-import { useForm } from "react-hook-form"
-import * as z from "zod"
-import { format } from "date-fns"
-import { CalendarIcon, Loader2 } from "lucide-react"
+import { useState } from "react";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import * as z from "zod";
+import { format } from "date-fns";
+import { CalendarIcon, Loader2 } from "lucide-react";
 
-import { Button } from "@/components/ui/button"
-import { Calendar } from "@/components/ui/calendar"
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/textarea"
-import { toast } from "@/components/ui/use-toast"
-import { cn } from "@/lib/utils"
+import { Button } from "@/components/ui/button";
+import { Calendar } from "@/components/ui/calendar";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { toast } from "sonner";
+import { cn } from "@/lib/utils";
 
 const formSchema = z.object({
   name: z.string().min(2, {
@@ -37,7 +54,7 @@ const formSchema = z.object({
     required_error: "Please select a session type.",
   }),
   notes: z.string().optional(),
-})
+});
 
 const sessionTypes = [
   { id: "portrait", name: "Portrait Session" },
@@ -45,12 +62,22 @@ const sessionTypes = [
   { id: "family", name: "Family Session" },
   { id: "commercial", name: "Commercial Shoot" },
   { id: "event", name: "Event Coverage" },
-]
+];
 
-const timeSlots = ["9:00 AM", "10:00 AM", "11:00 AM", "12:00 PM", "1:00 PM", "2:00 PM", "3:00 PM", "4:00 PM", "5:00 PM"]
+const timeSlots = [
+  "9:00 AM",
+  "10:00 AM",
+  "11:00 AM",
+  "12:00 PM",
+  "1:00 PM",
+  "2:00 PM",
+  "3:00 PM",
+  "4:00 PM",
+  "5:00 PM",
+];
 
 export function BookingCalendar() {
-  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -60,20 +87,21 @@ export function BookingCalendar() {
       phone: "",
       notes: "",
     },
-  })
+  });
 
   function onSubmit(values: z.infer<typeof formSchema>) {
-    setIsSubmitting(true)
+    setIsSubmitting(true);
 
     // Simulate API call
     setTimeout(() => {
-      setIsSubmitting(false)
-      toast({
-        title: "Booking request sent!",
-        description: `We'll confirm your ${values.sessionType} session on ${format(values.date, "PPP")} at ${values.time} shortly.`,
-      })
-      form.reset()
-    }, 1500)
+      setIsSubmitting(false);
+      toast("Booking request sent!", {
+        description: `We'll confirm your ${
+          values.sessionType
+        } session on ${format(values.date, "PPP")} at ${values.time} shortly.`,
+      });
+      form.reset();
+    }, 1500);
   }
 
   return (
@@ -135,9 +163,16 @@ export function BookingCalendar() {
                     <FormControl>
                       <Button
                         variant={"outline"}
-                        className={cn("pl-3 text-left font-normal", !field.value && "text-muted-foreground")}
+                        className={cn(
+                          "pl-3 text-left font-normal",
+                          !field.value && "text-muted-foreground"
+                        )}
                       >
-                        {field.value ? format(field.value, "PPP") : <span>Pick a date</span>}
+                        {field.value ? (
+                          format(field.value, "PPP")
+                        ) : (
+                          <span>Pick a date</span>
+                        )}
                         <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
                       </Button>
                     </FormControl>
@@ -163,7 +198,10 @@ export function BookingCalendar() {
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Time</FormLabel>
-                <Select onValueChange={field.onChange} defaultValue={field.value}>
+                <Select
+                  onValueChange={field.onChange}
+                  defaultValue={field.value}
+                >
                   <FormControl>
                     <SelectTrigger>
                       <SelectValue placeholder="Select a time slot" />
@@ -215,7 +253,11 @@ export function BookingCalendar() {
             <FormItem>
               <FormLabel>Additional Notes</FormLabel>
               <FormControl>
-                <Textarea placeholder="Any specific requirements or questions?" className="min-h-[100px]" {...field} />
+                <Textarea
+                  placeholder="Any specific requirements or questions?"
+                  className="min-h-[100px]"
+                  {...field}
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -234,6 +276,5 @@ export function BookingCalendar() {
         </Button>
       </form>
     </Form>
-  )
+  );
 }
-

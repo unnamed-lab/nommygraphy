@@ -11,7 +11,7 @@ const testimonials = [
     id: 1,
     name: "Sarah Johnson",
     role: "Wedding Client",
-    image: "/placeholder.svg?height=100&width=100",
+    image: "/placeholder.svg",
     content:
       "Nommygraphy captured our wedding day perfectly. Every emotion, every detail was documented with such artistry. The photos tell our story in a way we'll cherish forever.",
     rating: 5,
@@ -20,7 +20,7 @@ const testimonials = [
     id: 2,
     name: "Michael Chen",
     role: "Corporate Client",
-    image: "/placeholder.svg?height=100&width=100",
+    image: "/placeholder.svg",
     content:
       "Working with Nommygraphy for our company branding was a game-changer. Their vision and attention to detail elevated our visual identity to a whole new level.",
     rating: 5,
@@ -29,7 +29,7 @@ const testimonials = [
     id: 3,
     name: "Emily Rodriguez",
     role: "Portrait Client",
-    image: "/placeholder.svg?height=100&width=100",
+    image: "/placeholder.svg",
     content:
       "I've never felt so comfortable in front of a camera. The team at Nommygraphy has a special talent for bringing out natural expressions and creating a relaxed atmosphere.",
     rating: 5,
@@ -77,8 +77,8 @@ export function TestimonialsSection() {
             What Our <span className="font-medium">Clients Say</span>
           </h2>
           <p className="text-muted-foreground text-lg">
-            Hear from the people who have experienced our photography services
-            and the stories we've helped them tell.
+            {`Hear from the people who have experienced our photography services
+            and the stories we've helped them tell.`}
           </p>
         </div>
 
@@ -114,7 +114,7 @@ export function TestimonialsSection() {
                 ))}
               </div>
 
-              <p className="text-muted-foreground">"{testimonial.content}"</p>
+              <p className="text-muted-foreground">{`"${testimonial.content}"`}</p>
             </div>
           ))}
         </div>

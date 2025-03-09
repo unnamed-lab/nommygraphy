@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Camera, Instagram, Facebook, Twitter } from "lucide-react";
+import Image from "next/image";
 
 export function Footer() {
   return (
@@ -11,15 +12,14 @@ export function Footer() {
               href="/"
               className="flex items-center gap-2 font-merriweather"
             >
-              <Camera className="h-6 w-6 text-primary" />
-              <span className="text-xl font-bold">nommygraphy</span>
+              <Image src={"/logo.png"} alt="Nommygraphy" width={200} height={24} />
             </Link>
-            <p className="mt-4 text-muted-foreground max-w-md">
-              Capturing life's most precious moments with artistry and a touch
+            <p className="mt-4 text-muted-foreground max-w-md ml-2">
+              {`Capturing life's most precious moments with artistry and a touch
               of magic. Professional photography services for all your special
-              occasions.
+              occasions.`}
             </p>
-            <div className="flex items-center gap-4 mt-6">
+            <div className="flex items-center gap-4 mt-6 ml-2">
               <Link
                 href="https://instagram.com"
                 target="_blank"

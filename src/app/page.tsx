@@ -1,11 +1,11 @@
-import Link from "next/link"
-import Image from "next/image"
-import { ArrowRight } from "lucide-react"
-import { HeroSection } from "@/components/hero-section"
-import { AboutSection } from "@/components/about-section"
-import { GalleryPreview } from "@/components/gallery-preview"
-import { TestimonialsSection } from "@/components/testimonials-section"
-import { ContactCta } from "@/components/contact-cta"
+import Link from "next/link";
+import Image from "next/image";
+import { ArrowRight } from "lucide-react";
+import { HeroSection } from "@/components/hero-section";
+import { AboutSection } from "@/components/about-section";
+import { GalleryPreview } from "@/components/gallery-preview";
+import { TestimonialsSection } from "@/components/testimonials-section";
+import { ContactCta } from "@/components/contact-cta";
 
 export default function Home() {
   return (
@@ -16,11 +16,12 @@ export default function Home() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           <div className="space-y-4">
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-light tracking-tight">
-              Capturing <span className="font-medium">life's</span> most
+              Capturing <span className="font-medium">{"life's"}</span> most
               <span className="font-medium block mt-1">precious moments</span>
             </h2>
             <p className="text-muted-foreground text-lg md:text-xl max-w-md">
-              With artistry and a touch of magic, we transform ordinary scenes into extraordinary memories.
+              With artistry and a touch of magic, we transform ordinary scenes
+              into extraordinary memories.
             </p>
             <div className="pt-4">
               <Link
@@ -32,9 +33,9 @@ export default function Home() {
               </Link>
             </div>
           </div>
-          <div className="relative aspect-square overflow-hidden rounded-xl">
+          <div className="relative aspect-square overflow-hidden rounded-xl bg-gray-300">
             <Image
-              src="/placeholder.svg?height=600&width=600"
+              src="/placeholder.svg"
               alt="Elegant photography"
               fill
               className="object-cover"
@@ -69,6 +70,5 @@ export default function Home() {
 
       <ContactCta />
     </main>
-  )
+  );
 }
-

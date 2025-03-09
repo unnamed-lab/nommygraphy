@@ -1,15 +1,22 @@
-"use client"
+"use client";
 
-import type React from "react"
+import type React from "react";
 
-import { useState, useEffect, useRef } from "react"
-import Image from "next/image"
-import { useSearchParams } from "next/navigation"
-import { ChevronLeft, ChevronRight, X, ZoomIn, ZoomOut, Download } from "lucide-react"
-import gsap from "gsap"
-import { ScrollTrigger } from "gsap/ScrollTrigger"
-import { Button } from "@/components/ui/button"
-import { Dialog, DialogContent } from "@/components/ui/dialog"
+import { useState, useEffect, useRef } from "react";
+import Image from "next/image";
+import { useSearchParams } from "next/navigation";
+import {
+  ChevronLeft,
+  ChevronRight,
+  X,
+  ZoomIn,
+  ZoomOut,
+  Download,
+} from "lucide-react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { Button } from "@/components/ui/button";
+import { Dialog, DialogContent } from "@/components/ui/dialog";
 
 // Sample gallery data
 const galleryItems = [
@@ -17,127 +24,144 @@ const galleryItems = [
     id: 1,
     title: "Mountain Sunrise",
     category: "landscape",
-    image: "/placeholder.svg?height=800&width=1200",
-    description: "A breathtaking view of the mountains at sunrise, capturing the first light of day.",
+    image: "/placeholder.svg",
+    description:
+      "A breathtaking view of the mountains at sunrise, capturing the first light of day.",
   },
   {
     id: 2,
     title: "Urban Portrait",
     category: "portrait",
-    image: "/placeholder.svg?height=1200&width=800",
-    description: "A striking portrait set against the backdrop of the urban landscape.",
+    image: "/placeholder.svg",
+    description:
+      "A striking portrait set against the backdrop of the urban landscape.",
   },
   {
     id: 3,
     title: "Wedding Ceremony",
     category: "wedding",
-    image: "/placeholder.svg?height=800&width=1200",
-    description: "A beautiful moment captured during a wedding ceremony, full of emotion and joy.",
+    image: "/placeholder.svg",
+    description:
+      "A beautiful moment captured during a wedding ceremony, full of emotion and joy.",
   },
   {
     id: 4,
     title: "City Skyline",
     category: "urban",
-    image: "/placeholder.svg?height=800&width=1200",
-    description: "The city skyline at dusk, when the lights begin to illuminate the urban landscape.",
+    image: "/placeholder.svg",
+    description:
+      "The city skyline at dusk, when the lights begin to illuminate the urban landscape.",
   },
   {
     id: 5,
     title: "Product Showcase",
     category: "commercial",
-    image: "/placeholder.svg?height=800&width=800",
-    description: "A professional product photograph highlighting the design and features.",
+    image: "/placeholder.svg",
+    description:
+      "A professional product photograph highlighting the design and features.",
   },
   {
     id: 6,
     title: "Light Patterns",
     category: "abstract",
-    image: "/placeholder.svg?height=1200&width=800",
-    description: "Abstract patterns created by light and shadow, forming a mesmerizing composition.",
+    image: "/placeholder.svg",
+    description:
+      "Abstract patterns created by light and shadow, forming a mesmerizing composition.",
   },
   {
     id: 7,
     title: "Forest Path",
     category: "landscape",
-    image: "/placeholder.svg?height=1200&width=800",
-    description: "A serene path through the forest, with sunlight filtering through the canopy.",
+    image: "/placeholder.svg",
+    description:
+      "A serene path through the forest, with sunlight filtering through the canopy.",
   },
   {
     id: 8,
     title: "Family Portrait",
     category: "portrait",
-    image: "/placeholder.svg?height=800&width=1200",
-    description: "A warm family portrait capturing the bonds and connections between loved ones.",
+    image: "/placeholder.svg",
+    description:
+      "A warm family portrait capturing the bonds and connections between loved ones.",
   },
   {
     id: 9,
     title: "Wedding Couple",
     category: "wedding",
-    image: "/placeholder.svg?height=1200&width=800",
-    description: "A romantic portrait of a wedding couple, celebrating their special day.",
+    image: "/placeholder.svg",
+    description:
+      "A romantic portrait of a wedding couple, celebrating their special day.",
   },
   {
     id: 10,
     title: "Street Photography",
     category: "urban",
-    image: "/placeholder.svg?height=800&width=1200",
-    description: "A candid street photograph capturing the essence of urban life.",
+    image: "/placeholder.svg",
+    description:
+      "A candid street photograph capturing the essence of urban life.",
   },
   {
     id: 11,
     title: "Brand Campaign",
     category: "commercial",
-    image: "/placeholder.svg?height=800&width=800",
-    description: "A professional photograph for a brand campaign, showcasing the product in context.",
+    image: "/placeholder.svg",
+    description:
+      "A professional photograph for a brand campaign, showcasing the product in context.",
   },
   {
     id: 12,
     title: "Color Study",
     category: "abstract",
-    image: "/placeholder.svg?height=800&width=800",
-    description: "An abstract study of color and form, creating a visually striking composition.",
+    image: "/placeholder.svg",
+    description:
+      "An abstract study of color and form, creating a visually striking composition.",
   },
   {
     id: 13,
     title: "Coastal Sunset",
     category: "landscape",
-    image: "/placeholder.svg?height=800&width=1200",
-    description: "A stunning sunset over the coast, with vibrant colors reflecting on the water.",
+    image: "/placeholder.svg",
+    description:
+      "A stunning sunset over the coast, with vibrant colors reflecting on the water.",
   },
   {
     id: 14,
     title: "Studio Portrait",
     category: "portrait",
-    image: "/placeholder.svg?height=1200&width=800",
-    description: "A professional studio portrait with carefully controlled lighting and composition.",
+    image: "/placeholder.svg",
+    description:
+      "A professional studio portrait with carefully controlled lighting and composition.",
   },
   {
     id: 15,
     title: "Wedding Details",
     category: "wedding",
-    image: "/placeholder.svg?height=800&width=800",
-    description: "A close-up of wedding details, capturing the small moments that make the day special.",
+    image: "/placeholder.svg",
+    description:
+      "A close-up of wedding details, capturing the small moments that make the day special.",
   },
-]
+];
 
 export function GalleryGrid() {
-  const searchParams = useSearchParams()
-  const [activeCategory, setActiveCategory] = useState<string | null>(null)
-  const galleryRef = useRef<HTMLDivElement>(null)
-  const [selectedImage, setSelectedImage] = useState<(typeof galleryItems)[0] | null>(null)
-  const [isFullscreen, setIsFullscreen] = useState(false)
-  const [zoomLevel, setZoomLevel] = useState(1)
+  const searchParams = useSearchParams();
+  const [activeCategory, setActiveCategory] = useState<string | null>(null);
+  const galleryRef = useRef<HTMLDivElement>(null);
+  const [selectedImage, setSelectedImage] = useState<
+    (typeof galleryItems)[0] | null
+  >(null);
+  const [isFullscreen, setIsFullscreen] = useState(false);
+  const [zoomLevel, setZoomLevel] = useState(1);
 
   useEffect(() => {
-    const category = searchParams.get("category")
-    setActiveCategory(category)
-  }, [searchParams])
+    const category = searchParams.get("category");
+    setActiveCategory(category);
+  }, [searchParams]);
 
   useEffect(() => {
-    gsap.registerPlugin(ScrollTrigger)
+    gsap.registerPlugin(ScrollTrigger);
 
     if (galleryRef.current) {
-      const items = galleryRef.current.querySelectorAll(".gallery-item")
+      const items = galleryRef.current.querySelectorAll(".gallery-item");
 
       gsap.fromTo(
         items,
@@ -152,61 +176,71 @@ export function GalleryGrid() {
             trigger: galleryRef.current,
             start: "top 80%",
           },
-        },
-      )
+        }
+      );
     }
 
     return () => {
-      ScrollTrigger.getAll().forEach((trigger) => trigger.kill())
-    }
-  }, [])
+      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+    };
+  }, []);
 
-  const filteredItems = activeCategory ? galleryItems.filter((item) => item.category === activeCategory) : galleryItems
+  const filteredItems = activeCategory
+    ? galleryItems.filter((item) => item.category === activeCategory)
+    : galleryItems;
 
   const handleImageClick = (item: (typeof galleryItems)[0]) => {
-    setSelectedImage(item)
-    setIsFullscreen(true)
-    setZoomLevel(1)
-  }
+    setSelectedImage(item);
+    setIsFullscreen(true);
+    setZoomLevel(1);
+  };
 
   const handleClose = () => {
-    setIsFullscreen(false)
-    setSelectedImage(null)
-  }
+    setIsFullscreen(false);
+    setSelectedImage(null);
+  };
 
   const handlePrevious = () => {
-    if (!selectedImage) return
-    const currentIndex = filteredItems.findIndex((item) => item.id === selectedImage.id)
-    const previousIndex = (currentIndex - 1 + filteredItems.length) % filteredItems.length
-    setSelectedImage(filteredItems[previousIndex])
-    setZoomLevel(1)
-  }
+    if (!selectedImage) return;
+    const currentIndex = filteredItems.findIndex(
+      (item) => item.id === selectedImage.id
+    );
+    const previousIndex =
+      (currentIndex - 1 + filteredItems.length) % filteredItems.length;
+    setSelectedImage(filteredItems[previousIndex]);
+    setZoomLevel(1);
+  };
 
   const handleNext = () => {
-    if (!selectedImage) return
-    const currentIndex = filteredItems.findIndex((item) => item.id === selectedImage.id)
-    const nextIndex = (currentIndex + 1) % filteredItems.length
-    setSelectedImage(filteredItems[nextIndex])
-    setZoomLevel(1)
-  }
+    if (!selectedImage) return;
+    const currentIndex = filteredItems.findIndex(
+      (item) => item.id === selectedImage.id
+    );
+    const nextIndex = (currentIndex + 1) % filteredItems.length;
+    setSelectedImage(filteredItems[nextIndex]);
+    setZoomLevel(1);
+  };
 
   const handleZoomIn = () => {
-    setZoomLevel((prev) => Math.min(prev + 0.25, 3))
-  }
+    setZoomLevel((prev) => Math.min(prev + 0.25, 3));
+  };
 
   const handleZoomOut = () => {
-    setZoomLevel((prev) => Math.max(prev - 0.25, 0.5))
-  }
+    setZoomLevel((prev) => Math.max(prev - 0.25, 0.5));
+  };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
-    if (e.key === "ArrowLeft") handlePrevious()
-    if (e.key === "ArrowRight") handleNext()
-    if (e.key === "Escape") handleClose()
-  }
+    if (e.key === "ArrowLeft") handlePrevious();
+    if (e.key === "ArrowRight") handleNext();
+    if (e.key === "Escape") handleClose();
+  };
 
   return (
     <>
-      <div ref={galleryRef} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+      <div
+        ref={galleryRef}
+        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6"
+      >
         {filteredItems.map((item) => (
           <div
             key={item.id}
@@ -224,7 +258,9 @@ export function GalleryGrid() {
             <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
             <div className="absolute bottom-0 left-0 right-0 p-3 sm:p-4 text-white translate-y-4 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
               <h3 className="text-base sm:text-lg font-bold">{item.title}</h3>
-              <p className="text-xs sm:text-sm text-white/80 mt-1 capitalize">{item.category}</p>
+              <p className="text-xs sm:text-sm text-white/80 mt-1 capitalize">
+                {item.category}
+              </p>
             </div>
           </div>
         ))}
@@ -307,9 +343,16 @@ export function GalleryGrid() {
                 <div className="flex justify-between items-center">
                   <div>
                     <h3 className="text-xl font-bold">{selectedImage.title}</h3>
-                    <p className="text-sm text-white/80 mt-1">{selectedImage.description}</p>
+                    <p className="text-sm text-white/80 mt-1">
+                      {selectedImage.description}
+                    </p>
                   </div>
-                  <Button variant="ghost" size="icon" className="text-white hover:bg-white/10" aria-label="Download">
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    className="text-white hover:bg-white/10"
+                    aria-label="Download"
+                  >
                     <Download className="h-5 w-5" />
                   </Button>
                 </div>
@@ -319,6 +362,5 @@ export function GalleryGrid() {
         </DialogContent>
       </Dialog>
     </>
-  )
+  );
 }
-

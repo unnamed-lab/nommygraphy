@@ -1,6 +1,6 @@
 import type React from "react";
 import type { Metadata } from "next";
-import { Merriweather, Inter } from "next/font/google";
+import { Merriweather, Teachers } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
@@ -13,7 +13,7 @@ const merriweather = Merriweather({
   display: "swap",
 });
 
-const inter = Inter({
+const teachers = Teachers({
   subsets: ["latin"],
   variable: "--font-inter",
   display: "swap",
@@ -32,7 +32,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${merriweather.variable} ${inter.variable} font-sans`}>
+      <body
+        className={`${merriweather.variable} ${teachers.variable} font-sans`}
+      >
         <ScrollProvider>
           <div className="relative flex min-h-screen flex-col">
             <Header />

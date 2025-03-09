@@ -47,8 +47,8 @@ export function ContactCta() {
             Ready to <span className="font-bold">Capture</span> Your Story?
           </h2>
           <p className="text-white/80 text-base sm:text-lg md:text-xl mb-6 sm:mb-8 max-w-2xl mx-auto">
-            Let's create beautiful memories together. Book a session with
-            Nommygraphy and transform your special moments into timeless art.
+            {`Let's create beautiful memories together. Book a session with
+            Nommygraphy and transform your special moments into timeless art.`}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button
@@ -62,7 +62,7 @@ export function ContactCta() {
               asChild
               variant="outline"
               size="lg"
-              className="border-white text-primary hover:bg-primary/10"
+              className="border-white text-primary hover:text-white hover:bg-primary/10"
             >
               <Link href="/gallery" className="group">
                 Explore Our Work
