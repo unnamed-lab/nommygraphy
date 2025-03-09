@@ -1,7 +1,7 @@
 "use client";
 
 import type React from "react";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, Suspense } from "react";
 import Image from "next/image";
 import { useSearchParams } from "next/navigation";
 import {
@@ -112,7 +112,7 @@ export function GalleryGrid() {
   };
 
   return (
-    <>
+    <Suspense>
       <div
         ref={galleryRef}
         className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6"
@@ -237,6 +237,6 @@ export function GalleryGrid() {
           </div>
         </DialogContent>
       </Dialog>
-    </>
+    </Suspense>
   );
 }
