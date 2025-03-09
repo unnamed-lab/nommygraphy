@@ -18,65 +18,10 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
+import { galleryItems } from "@/static-data/gallery";
 
-const galleryItems = [
-  {
-    id: 1,
-    title: "Serene Landscapes",
-    description: "Capturing the beauty of nature",
-    image: "/placeholder.svg",
-    category: "landscape",
-    fullDescription:
-      "Our landscape photography captures the serene beauty of nature in its most pristine form.",
-  },
-  {
-    id: 2,
-    title: "Elegant Portraits",
-    description: "Revealing the soul within",
-    image: "/placeholder.svg",
-    category: "portrait",
-    fullDescription:
-      "Our portrait photography reveals the true essence and personality of each individual subject.",
-  },
-  {
-    id: 3,
-    title: "Wedding Moments",
-    description: "Preserving timeless celebrations",
-    image: "/placeholder.svg",
-    category: "wedding",
-    fullDescription:
-      "We preserve the most precious moments of your wedding day with artistic and timeless photography.",
-  },
-  {
-    id: 4,
-    title: "Urban Exploration",
-    description: "Finding beauty in city life",
-    image: "/placeholder.svg",
-    category: "urban",
-    fullDescription:
-      "Our urban photography finds beauty in the concrete jungle, capturing the essence of city life.",
-  },
-  {
-    id: 5,
-    title: "Commercial Projects",
-    description: "Elevating brands through imagery",
-    image: "/placeholder.svg",
-    category: "commercial",
-    fullDescription:
-      "We help elevate brands through powerful commercial photography that tells your brand's story.",
-  },
-  {
-    id: 6,
-    title: "Abstract Visions",
-    description: "Seeing the world differently",
-    image: "/placeholder.svg",
-    category: "abstract",
-    fullDescription:
-      "Our abstract photography offers a unique perspective, seeing the world through a different lens.",
-  },
-];
 
-export function GalleryPreview() {
+export function GalleryPreview({gridCount = Infinity}: {gridCount?:number}) {
   const galleryRef = useRef<HTMLDivElement>(null);
   const itemsRef = useRef<HTMLDivElement[]>([]);
   const [selectedImage, setSelectedImage] = useState<
@@ -169,7 +114,7 @@ export function GalleryPreview() {
         ref={galleryRef}
         className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8"
       >
-        {galleryItems.map((item, index) => (
+        {galleryItems.filter((_, i) => i < gridCount).map((item, index) => (
           <Link
             key={item.id}
             href={`/gallery?category=${item.category}`}

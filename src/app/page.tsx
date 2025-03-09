@@ -62,7 +62,7 @@ export default function Home() {
             </Link>
           </div>
 
-          <GalleryPreview />
+          <GalleryPreview gridCount={6} />
         </div>
       </section>
 

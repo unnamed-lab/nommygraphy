@@ -1,17 +1,24 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { useRouter } from "next/navigation"
-import Link from "next/link"
-import { zodResolver } from "@hookform/resolvers/zod"
-import { useForm } from "react-hook-form"
-import * as z from "zod"
-import { Camera, Loader2 } from "lucide-react"
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+import Link from "next/link";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import * as z from "zod";
+import { Camera, Loader2 } from "lucide-react";
 
-import { Button } from "@/components/ui/button"
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
-import { Input } from "@/components/ui/input"
-import { toast } from "@/components/ui/use-toast"
+import { Button } from "@/components/ui/button";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { toast } from "sonner";
 
 const formSchema = z.object({
   email: z.string().email({
@@ -20,11 +27,11 @@ const formSchema = z.object({
   password: z.string().min(6, {
     message: "Password must be at least 6 characters.",
   }),
-})
+});
 
 export default function LoginPage() {
-  const [isLoading, setIsLoading] = useState(false)
-  const router = useRouter()
+  const [isLoading, setIsLoading] = useState(false);
+  const router = useRouter();
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -32,23 +39,22 @@ export default function LoginPage() {
       email: "",
       password: "",
     },
-  })
+  });
 
   function onSubmit(values: z.infer<typeof formSchema>) {
-    setIsLoading(true)
+    setIsLoading(true);
 
     // Simulate authentication
     setTimeout(() => {
-      setIsLoading(false)
+      setIsLoading(false);
 
       // For demo purposes, any login works
-      toast({
-        title: "Login successful",
+      toast("Login successful", {
         description: "Welcome to your dashboard",
-      })
+      });
 
-      router.push("/dashboard")
-    }, 1500)
+      router.push("/dashboard");
+    }, 1500);
   }
 
   return (
@@ -59,7 +65,9 @@ export default function LoginPage() {
             <Camera className="h-8 w-8 text-primary" />
           </div>
           <h1 className="text-2xl font-bold">Welcome back</h1>
-          <p className="text-sm text-muted-foreground">Enter your credentials to access your dashboard</p>
+          <p className="text-sm text-muted-foreground">
+            Enter your credentials to access your dashboard
+          </p>
         </div>
         <div className="grid gap-6">
           <Form {...form}>
@@ -84,7 +92,11 @@ export default function LoginPage() {
                   <FormItem>
                     <FormLabel>Password</FormLabel>
                     <FormControl>
-                      <Input type="password" placeholder="••••••••" {...field} />
+                      <Input
+                        type="password"
+                        placeholder="••••••••"
+                        {...field}
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -110,6 +122,5 @@ export default function LoginPage() {
         </div>
       </div>
     </div>
-  )
+  );
 }
-
